@@ -21,6 +21,7 @@ export const timelineSketch = (s) => {
     let timer = 0
     let hoverTimer = 0
     const woodstockX = 9 * canvas.width / 20
+    let start = false
     
     
     s.preload = async () => {
@@ -30,6 +31,10 @@ export const timelineSketch = (s) => {
     }
     
     s.setup = () => {
+        window.addEventListener('click', () => {
+            start = true
+        })
+        
         const cnv = s.createCanvas(canvas.width, canvas.height);
         cnv.id('p5-timeline')
         cnv.parent('viz')
@@ -104,56 +109,61 @@ export const timelineSketch = (s) => {
         
         s.textAlign(s.LEFT)
         
-        if (hovered) {
-            s.fill(`#${intToRGB(hashCode(hovered + 'nul'))}`)
-            s.circle(20, 20, 10)
-            s.fill('white')
-            s.text(hovered[0].toUpperCase() + hovered.substring(1), 30, 25)
-        }
-        
-        
-        groupedTable.forEach((point, i) => {
+        if (start) {
+            
+            
             if (hovered) {
-                if (hovered === point.genre) {
-                    s.fill(`#${intToRGB(hashCode(point.genre + 'nul'))}`)
-                } else {
-                    s.fill(`#${intToRGB(hashCode(point.genre + 'nul'))}`)
-                    if (hoverTimer > (point.year - 1960)/2) {
-                        s.fill('#1E1E1E')
-                    }
-                }
-            } else {
-                s.fill(`#${intToRGB(hashCode(point.genre + 'nul'))}`)
-            }
-            if (point.year !== currentYear) {
-                currentYear = point.year
-                index = 0
-            }
-            if (index !== 0) {
-                index *= -1
-            }
-            if (timer > Math.abs(point.year - 1960)*2 && timer > Math.abs(index)*2) {
-                
-                s.circle(((point.year - 1960) * (canvas.width - 100) / 20) + 45, canvas.height / 2 + index * 15, 6)
-            }
-            if (s.dist(s.mouseX, s.mouseY, ((point.year - 1960) * (canvas.width - 100) / 20) + 45, canvas.height / 2 + index * 15) < 6) {
-                if (point.genre !== hovered) {
-                    hoverTimer = 0
-                }
-                hovered = point.genre
-                onCircle = true
-                
+                s.fill(`#${intToRGB(hashCode(hovered + 'nul'))}`)
+                s.circle(20, 20, 10)
+                s.fill('white')
+                s.text(hovered[0].toUpperCase() + hovered.substring(1), 30, 25)
             }
             
-            if (index >= 0) {
-                index += 1
+            
+            groupedTable.forEach((point, i) => {
+                if (hovered) {
+                    if (hovered === point.genre) {
+                        s.fill(`#${intToRGB(hashCode(point.genre + 'nul'))}`)
+                    } else {
+                        s.fill(`#${intToRGB(hashCode(point.genre + 'nul'))}`)
+                        if (hoverTimer > (point.year - 1960)/2) {
+                            s.fill('#1E1E1E')
+                        }
+                    }
+                } else {
+                    s.fill(`#${intToRGB(hashCode(point.genre + 'nul'))}`)
+                }
+                if (point.year !== currentYear) {
+                    currentYear = point.year
+                    index = 0
+                }
+                if (index !== 0) {
+                    index *= -1
+                }
+                if (timer > Math.abs(point.year - 1960)*2 && timer > Math.abs(index)*2) {
+                    
+                    s.circle(((point.year - 1960) * (canvas.width - 100) / 20) + 45, canvas.height / 2 + index * 15, 6)
+                }
+                if (s.dist(s.mouseX, s.mouseY, ((point.year - 1960) * (canvas.width - 100) / 20) + 45, canvas.height / 2 + index * 15) < 6) {
+                    if (point.genre !== hovered) {
+                        hoverTimer = 0
+                    }
+                    hovered = point.genre
+                    onCircle = true
+                    
+                }
+                
+                if (index >= 0) {
+                    index += 1
+                    
+                }
+            })
+            if (onCircle == false) {
+                hovered = ''
             }
-        })
-        if (onCircle == false) {
-            hovered = ''
+            
+            timer += 1
+            hoverTimer += 1
         }
-        
-        timer += 1
-        hoverTimer += 1
     }
 }
