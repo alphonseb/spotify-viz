@@ -15,6 +15,7 @@ export const graphSketch = (s) => {
     let meanAcoustic = []
     let meanEnergy = []
     let timer = 0
+    let start = false
     let avenirLight, avenirBold, avenirMedium
     const woodstockX = (9 * (canvas.width - canvas.width/3) / 20) + canvas.width / 6 
     
@@ -30,6 +31,9 @@ export const graphSketch = (s) => {
         cnv.id('p5-graph')
         cnv.parent('viz')
         
+        window.addEventListener('click', () => {
+            start = true
+        })
         
         let accousticAccummulator = 0
         let energyAccummulator = 0
@@ -91,152 +95,162 @@ export const graphSketch = (s) => {
         s.textFont(avenirLight, 16)
         
         
-        
-        
-        
-        s.stroke('#ED78AA')
-        s.strokeWeight(2)
-        s.noFill()
-        
-        s.beginShape()
-        s.curveVertex(((meanAcoustic[0].year - 1960) * (canvas.width - canvas.width/3) / 20) + canvas.width / 6, canvas.height * (1 - meanAcoustic[0].acousticness))
-        for (let index = 0; index < meanAcoustic.length; index++) {
-            
-            const posX = ((meanAcoustic[index].year - 1960) * (canvas.width - canvas.width/3) / 20) + canvas.width/6
-            const posY = (canvas.height - 50) * (1 - meanAcoustic[index].acousticness)
-            if (timer > (meanAcoustic[index].year - 1960) * 2) {
+        if (start) {
                 
-                s.curveVertex(posX, posY)
-                if (index === 20) {
-                    s.curveVertex(posX, posY)
-                    
-                }
-            }
             
             
-            
-        }
-        s.endShape()
-        
-        
-        s.stroke('#F9E73C')
-        s.strokeWeight(2)
-        s.noFill()
-        
-        s.beginShape()
-        s.curveVertex(((meanEnergy[0].year - 1960) * (canvas.width - canvas.width/3) / 20) + canvas.width/6, canvas.height * (1 - meanEnergy[0].energy))
-        
-        for (let index = 0; index < meanEnergy.length; index++) {
-            
-            const posX = ((meanEnergy[index].year - 1960) * (canvas.width - canvas.width / 3) / 20) + canvas.width / 6
-            const posY = (canvas.height - 50) * (1 - meanEnergy[index].energy)
-            
-            if (timer > (meanEnergy[index].year - 1960) * 2) {
-                
-                s.curveVertex(posX, posY)
-                if (index === 20) {
-                    s.curveVertex(posX, posY)
-                }
-            }
-            
-            
-        }
-        s.endShape()
-        
-        
-        for (let i = 0; i < meanAcoustic.length; i+= 5) {
-            const posX = ((meanAcoustic[i].year - 1960) * (canvas.width - canvas.width / 3) / 20) + canvas.width / 6
-            const posY = (canvas.height - 50) * (1 - meanAcoustic[i].acousticness)
-            s.fill('#1E1E1E')
             s.stroke('#ED78AA')
             s.strokeWeight(2)
-            s.circle(posX, posY, 15)
-            s.fill('#ED78AA')
-            s.noStroke()
+            s.noFill()
             
-            s.circle(posX, posY, 7)
+            s.beginShape()
+            s.curveVertex(((meanAcoustic[0].year - 1960) * (canvas.width - canvas.width / 3) / 20) + canvas.width / 6, canvas.height * (1 - meanAcoustic[0].acousticness))
+            for (let index = 0; index < meanAcoustic.length; index++) {
+                
+                const posX = ((meanAcoustic[index].year - 1960) * (canvas.width - canvas.width / 3) / 20) + canvas.width / 6
+                const posY = (canvas.height - 50) * (1 - meanAcoustic[index].acousticness)
+                if (timer > (meanAcoustic[index].year - 1960) * 2) {
+                    
+                    s.curveVertex(posX, posY)
+                    if (index === 20) {
+                        s.curveVertex(posX, posY)
+                        
+                    }
+                }
+                
+                
+                
+            }
+            s.endShape()
             
-        }
-        for (let i = 0; i < meanEnergy.length; i+= 5) {
             
-            const posX = ((meanEnergy[i].year - 1960) * (canvas.width - canvas.width / 3) / 20) + canvas.width / 6
-            const posY = (canvas.height - 50) * (1 - meanEnergy[i].energy)
-                   
-            s.fill('#1E1E1E')
-            s.strokeWeight(2)
             s.stroke('#F9E73C')
-            s.circle(posX, posY, 15)
-            s.fill('#F9E73C')
-            s.noStroke()
-            s.circle(posX, posY, 7)
-        }
-        
-        for (let index = 0; index < meanAcoustic.length; index++) {
+            s.strokeWeight(2)
+            s.noFill()
             
-            const posX = ((meanAcoustic[index].year - 1960) * (canvas.width - canvas.width/3) / 20) + canvas.width/6
-            const posY = (canvas.height - 50) * (1 - meanAcoustic[index].acousticness)
+            s.beginShape()
+            s.curveVertex(((meanEnergy[0].year - 1960) * (canvas.width - canvas.width / 3) / 20) + canvas.width / 6, canvas.height * (1 - meanEnergy[0].energy))
             
-            if (s.dist(s.mouseX, s.mouseY, posX, posY) < 15) {
-                s.fill('#ED78AA')
-                s.noStroke()    
-                s.circle(posX, posY, 10)
-                s.fill('white')
-                s.stroke('#ED78AA')
-                s.strokeWeight(3)
-                s.rectMode(s.CENTER)
-                s.rect(posX, meanAcoustic[index].year > 1969 ? posY + 50 : posY - 70, 170, 60, 8)
-                s.rectMode(s.CORNER)
-                s.textAlign(s.CENTER)
-                s.fill('#1E1E1E')
-                s.noStroke()
-                s.textFont(avenirBold)
-                s.text(`Year:`, posX - 20, meanAcoustic[index].year > 1969 ? posY + 45 : posY - 75)
-                s.textFont(avenirLight)
-                s.text(`${ meanEnergy[index].year }`, posX + 20, meanEnergy[index].year > 1969 ? posY + 45 : posY - 75)
-                s.textFont(avenirBold)
-                s.text(`Acousticness:`, posX - 20, meanAcoustic[index].year > 1969 ? posY + 65 : posY - 55)
-                s.textFont(avenirLight)
-                s.text(`${Math.floor(meanAcoustic[index].acousticness * 100)/100}`, posX + 50, meanEnergy[index].year > 1969 ? posY + 65 : posY - 55)
-                s.strokeWeight(2)
-                s.noFill()
+            for (let index = 0; index < meanEnergy.length; index++) {
+                
+                const posX = ((meanEnergy[index].year - 1960) * (canvas.width - canvas.width / 3) / 20) + canvas.width / 6
+                const posY = (canvas.height - 50) * (1 - meanEnergy[index].energy)
+                
+                if (timer > (meanEnergy[index].year - 1960) * 2) {
+                    
+                    s.curveVertex(posX, posY)
+                    if (index === 20) {
+                        s.curveVertex(posX, posY)
+                    }
+                }
+                
+                
+            }
+            s.endShape()
+            
+            
+            for (let i = 0; i < meanAcoustic.length; i += 5) {
+                const posX = ((meanAcoustic[i].year - 1960) * (canvas.width - canvas.width / 3) / 20) + canvas.width / 6
+                const posY = (canvas.height - 50) * (1 - meanAcoustic[i].acousticness)
+                
+                if (timer > (meanEnergy[i].year - 1960) * 2) {
+                    s.fill('#1E1E1E')
+                    s.stroke('#ED78AA')
+                    s.strokeWeight(2)
+                    s.circle(posX, posY, 15)
+                    s.fill('#ED78AA')
+                    s.noStroke()
+                    
+                    s.circle(posX, posY, 7)
+                }
+                
+            }
+            for (let i = 0; i < meanEnergy.length; i += 5) {
+                
+                const posX = ((meanEnergy[i].year - 1960) * (canvas.width - canvas.width / 3) / 20) + canvas.width / 6
+                const posY = (canvas.height - 50) * (1 - meanEnergy[i].energy)
+                    
+                if (timer > (meanEnergy[i].year - 1960) * 2) {
+                    s.fill('#1E1E1E')
+                    s.strokeWeight(2)
+                    s.stroke('#F9E73C')
+                    s.circle(posX, posY, 15)
+                    s.fill('#F9E73C')
+                    s.noStroke()
+                    s.circle(posX, posY, 7)
+                }
             }
             
-            
-            
-        }
-        
-        for (let index = 0; index < meanEnergy.length; index++) {
-            
-            const posX = ((meanEnergy[index].year - 1960) * (canvas.width - canvas.width / 3) / 20) + canvas.width / 6
-            const posY = (canvas.height - 50) * (1 - meanEnergy[index].energy)
-            
-            
-            if (s.dist(s.mouseX, s.mouseY, posX, posY) < 15) {
-                s.fill('#F9E73C')
-                s.noStroke()    
-                s.circle(posX, posY, 10)
-                s.fill('white')
-                s.stroke('#F9E73C')
-                s.strokeWeight(3)
-                s.rectMode(s.CENTER)
-                s.rect(posX, meanEnergy[index].year < 1969 ? posY + 50 : posY - 70, 120, 60, 8)
-                s.rectMode(s.CORNER)
-                s.textAlign(s.CENTER)
-                s.fill('#1E1E1E')
-                s.noStroke()
-                s.textFont(avenirBold)
-                s.text(`Year:`, posX - 20, meanEnergy[index].year < 1969 ? posY + 45 : posY - 75)
-                s.textFont(avenirLight)
-                s.text(`${ meanEnergy[index].year }`, posX + 20, meanEnergy[index].year < 1969 ? posY + 45 : posY - 75)
-                s.textFont(avenirBold)
-                s.text(`Energy:`, posX - 20, meanEnergy[index].year < 1969 ? posY + 65 : posY - 55)
-                s.textFont(avenirLight)
-                s.text(`${Math.floor(meanEnergy[index].energy * 100)/100}`, posX + 30, meanEnergy[index].year < 1969 ? posY + 65 : posY - 55)
-                s.strokeWeight(2)
-                s.stroke('#F9E73C')
-                s.noFill()
+            for (let index = 0; index < meanAcoustic.length; index++) {
+                
+                const posX = ((meanAcoustic[index].year - 1960) * (canvas.width - canvas.width / 3) / 20) + canvas.width / 6
+                const posY = (canvas.height - 50) * (1 - meanAcoustic[index].acousticness)
+                
+                if (s.dist(s.mouseX, s.mouseY, posX, posY) < 15) {
+                    s.fill('#ED78AA')
+                    s.noStroke()
+                    s.circle(posX, posY, 10)
+                    s.fill('white')
+                    s.stroke('#ED78AA')
+                    s.strokeWeight(3)
+                    s.rectMode(s.CENTER)
+                    s.rect(posX, meanAcoustic[index].year > 1969 ? posY + 50 : posY - 70, 170, 60, 8)
+                    s.rectMode(s.CORNER)
+                    s.textAlign(s.CENTER)
+                    s.fill('#1E1E1E')
+                    s.noStroke()
+                    s.textFont(avenirBold)
+                    s.text(`Year:`, posX - 20, meanAcoustic[index].year > 1969 ? posY + 45 : posY - 75)
+                    s.textFont(avenirLight)
+                    s.text(`${ meanEnergy[index].year }`, posX + 20, meanEnergy[index].year > 1969 ? posY + 45 : posY - 75)
+                    s.textFont(avenirBold)
+                    s.text(`Acousticness:`, posX - 20, meanAcoustic[index].year > 1969 ? posY + 65 : posY - 55)
+                    s.textFont(avenirLight)
+                    s.text(`${ Math.floor(meanAcoustic[index].acousticness * 100) / 100 }`, posX + 50, meanEnergy[index].year > 1969 ? posY + 65 : posY - 55)
+                    s.strokeWeight(2)
+                    s.noFill()
+                }
+                
+                
+                
             }
             
+            for (let index = 0; index < meanEnergy.length; index++) {
+                
+                const posX = ((meanEnergy[index].year - 1960) * (canvas.width - canvas.width / 3) / 20) + canvas.width / 6
+                const posY = (canvas.height - 50) * (1 - meanEnergy[index].energy)
+                
+                
+                if (s.dist(s.mouseX, s.mouseY, posX, posY) < 15) {
+                    s.fill('#F9E73C')
+                    s.noStroke()
+                    s.circle(posX, posY, 10)
+                    s.fill('white')
+                    s.stroke('#F9E73C')
+                    s.strokeWeight(3)
+                    s.rectMode(s.CENTER)
+                    s.rect(posX, meanEnergy[index].year < 1969 ? posY + 50 : posY - 70, 120, 60, 8)
+                    s.rectMode(s.CORNER)
+                    s.textAlign(s.CENTER)
+                    s.fill('#1E1E1E')
+                    s.noStroke()
+                    s.textFont(avenirBold)
+                    s.text(`Year:`, posX - 20, meanEnergy[index].year < 1969 ? posY + 45 : posY - 75)
+                    s.textFont(avenirLight)
+                    s.text(`${ meanEnergy[index].year }`, posX + 20, meanEnergy[index].year < 1969 ? posY + 45 : posY - 75)
+                    s.textFont(avenirBold)
+                    s.text(`Energy:`, posX - 20, meanEnergy[index].year < 1969 ? posY + 65 : posY - 55)
+                    s.textFont(avenirLight)
+                    s.text(`${ Math.floor(meanEnergy[index].energy * 100) / 100 }`, posX + 30, meanEnergy[index].year < 1969 ? posY + 65 : posY - 55)
+                    s.strokeWeight(2)
+                    s.stroke('#F9E73C')
+                    s.noFill()
+                }
+                
+                
+            }
+            
+        timer += 1
             
         }
         
@@ -257,6 +271,5 @@ export const graphSketch = (s) => {
         s.text('0.5', canvas.width/6 - 50, (canvas.height - 50) / 2)
         s.text('1', canvas.width/6 - 50, 30)
         
-        timer += 1
     }
 }
