@@ -16,6 +16,8 @@ export const timelineSketch = (s) => {
     let currentYear = 1960
     let groupedTable = []
     let hovered = ''
+    let wasHovered = ''
+    let wasHoveredTimer = 0
     let avenirLight;
     let avenirBold;
     let timer = 0
@@ -131,7 +133,21 @@ export const timelineSketch = (s) => {
                         }
                     }
                 } else {
-                    s.fill(`#${intToRGB(hashCode(point.genre + 'nul'))}`)
+                    if (wasHovered) {
+                        if (wasHovered !== point.genre) {
+                            s.fill('#1E1E1E')
+                            if (wasHoveredTimer > (point.year - 1960)) {
+                                s.fill(`#${intToRGB(hashCode(point.genre + 'nul'))}`)
+                            }
+                        }
+                        else {
+                            
+                            s.fill(`#${intToRGB(hashCode(point.genre + 'nul'))}`)
+                        }
+                    }
+                    else {
+                        s.fill(`#${intToRGB(hashCode(point.genre + 'nul'))}`)
+                    }
                 }
                 if (point.year !== currentYear) {
                     currentYear = point.year
@@ -149,7 +165,9 @@ export const timelineSketch = (s) => {
                         hoverTimer = 0
                     }
                     hovered = point.genre
+                    wasHovered = hovered
                     onCircle = true
+                    wasHoveredTimer = 0
                     
                 }
                 
@@ -162,6 +180,7 @@ export const timelineSketch = (s) => {
                 hovered = ''
             }
             
+            wasHoveredTimer += 1
             timer += 1
             hoverTimer += 1
         }
