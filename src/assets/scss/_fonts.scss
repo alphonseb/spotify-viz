@@ -1,0 +1,15 @@
+@font-face {
+ font-family: "Avenir Bold";
+ src: url("assets/Avenir/AvenirBold.woff2") format("woff2"),
+        url("assets/Avenir/AvenirBold.woff") format("woff"),
+        url("assets/Avenir/AvenirBold.ttf") format("truetype"),
+        url("assets/Avenir/AvenirBold.eot") format("embedded-opentype"),
+}
+
+@font-face {
+ font-family: "Avenir Light";
+ src: url("assets/Avenir/AvenirLight.woff2") format("woff2"),
+        url("assets/Avenir/AvenirLight.woff") format("woff"),
+        url("assets/Avenir/AvenirLight.ttf") format("truetype"),
+        url("assets/Avenir/AvenirLight.eot") format("embedded-opentype"),
+}

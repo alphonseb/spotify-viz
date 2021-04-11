@@ -1,0 +1,170 @@
+@import 'assets/scss/locomotive';
+@import 'assets/scss/colors';
+@import 'assets/scss/fonts';
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+}
+
+.horizontal {
+    display: flex;
+    min-width: 100vw;
+    height: 100vh;
+    background-color: var(--black);
+}
+
+.title {
+    padding: 100px;
+    background-image: url(assets/img/woodstock.png);
+    background-size: cover;
+    background-position: 600px;
+    background-repeat: no-repeat;
+    flex:0 0 97%;
+    
+    &__container {
+        position: relative;
+        transform: rotate(-2deg);
+    }
+    
+    &__h1 {
+        font-family: 'Avenir Bold';
+        text-transform: uppercase;
+        font-size: 8rem;
+        line-height: 1.1;
+        width: 920px;
+        color: var(--white);
+        
+        &--double {
+            position: absolute;
+            top: 0;
+            left: 5px;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--yellow);
+        }
+    }
+    
+    &__description-wrapper {
+        display: flex;
+        width: 80%;
+    }
+    
+    &__description {
+        margin-left: auto;
+        font-family: 'Avenir Light';
+        font-size: 2rem;
+        line-height: 3.2rem;
+        color: var(--white);
+        width: 496px;
+        transform: rotate(-2deg);
+    }
+}
+
+.explanation {
+    flex: 0 0 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--yellow);
+    background-image: url(assets/img/dooodles.png);
+    background-repeat: no-repeat;
+    background-size: 400px;
+    background-position: bottom right 20%;
+    padding: 100px;
+    position: relative;
+    
+    &::before {
+        content: '';
+        width: 100px;
+        height: 100vh;
+        background-color: var(--yellow);
+        position: absolute;
+        top: 0;
+        right: 100%;
+        clip-path: polygon(30% 0%, 100% 0, 100% 100%, 0% 100%);
+        // transform: rotate(2deg);
+    }
+    
+    &__title {
+        transform: rotate(-2deg);
+        font-family: 'Avenir Bold';
+        font-size: 2rem;
+        line-height: 2.4rem;
+        letter-spacing: 0.1em;
+        color: var(--black);
+        text-transform: uppercase;
+    }
+    
+    &__desc {
+        transform: rotate(-2deg);
+        width: 496px;
+        color: var(--black);
+        font-size: 2rem;
+        line-height: 3.2rem;
+        font-family: 'Avenir Light';
+    }
+}
+
+.problematic {
+    flex: 0 0 100%;
+    background-color: var(--black);
+    padding: 100px;
+    background-image: url(assets/img/guitar.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    
+    &::before {
+        content: '';
+        width: 100px;
+        height: 100vh;
+        background-color: var(--black);
+        position: absolute;
+        top: 0;
+        right: 100%;
+        clip-path: polygon(30% 0%, 100% 0, 100% 100%, 0% 100%);
+        // transform: rotate(2deg);
+    }
+}
+
+.noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(assets/img/noise.png);
+    pointer-events: none;
+}
+
+.music-svg {
+    position: relative;
+    
+    svg {
+        position: absolute;
+        top: -40px;
+        left: 0;
+    }
+    
+    svg#star-1 {
+        top: 120%;
+        left: -50px
+    }
+    
+    svg#star-2 {
+        top: 160%;
+        left: 50px;
+        transform: scale(0.6);
+    }
+}

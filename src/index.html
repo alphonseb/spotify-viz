@@ -6,11 +6,102 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify Viz</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.scss">
 </head>
 
 <body>
-    <div id="viz" style="display: flex;"></div>
+    <main class="horizontal">
+        <div class="title">
+            <div class="title__container">
+                <h1 class="title__h1">Did the <span class="color-green-light">Woodstock</span> festival shake up the
+                    <span class="music-svg">
+                        music
+                        <svg id="circle" width="276" height="176" viewBox="0 0 276 176" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0)">
+                                <path
+                                    d="M103.919 17.5992C69.0005 21.2309 36.3162 46.0944 16.2029 73.4722C-0.278912 95.8214 -8.38013 127.669 12.5713 149.739C30.7292 168.736 61.4579 173.485 86.5996 175.44C111.741 177.396 136.883 175.161 161.466 170.412C203.09 162.59 280.191 142.196 275.721 86.6024C273.207 54.7547 245.83 24.5833 218.454 10.8944C185.49 -5.58811 147.219 -1.11827 113.138 9.21824C78.4984 19.5547 45.8142 37.7135 24.8628 67.8849C7.8223 92.1897 -4.74855 131.301 18.1583 155.885C38.551 177.675 75.4255 177.117 102.243 172.926C134.928 167.898 167.332 160.913 198.061 148.621C226.276 137.447 255.887 120.406 269.017 91.6309C278.515 71.2373 276.559 49.4468 258.122 35.4785C239.405 21.2309 212.308 18.1579 189.122 16.4817C163.98 14.8055 139.397 16.2024 114.535 20.9516C108.668 22.069 102.802 23.1865 96.6563 24.3039C94.1421 24.8627 95.2596 28.7738 97.7737 28.2151C114.256 25.142 130.737 21.5103 147.498 20.3928C159.231 19.8341 171.243 19.5547 182.976 20.1135C207.559 21.2309 235.774 24.3039 256.166 39.1103C280.749 56.9897 269.855 89.6754 253.094 108.672C230.187 134.933 193.312 147.504 160.628 156.444C129.62 164.825 94.9802 173.206 62.8547 170.133C47.211 168.736 31.0085 163.428 20.1138 151.694C7.54295 138.006 8.66036 118.45 13.4093 101.688C24.3041 61.1801 58.6644 34.0817 96.377 19.2754C132.693 5.02776 175.154 -2.79446 212.308 12.85C230.745 20.6722 245.83 34.6405 257.004 51.123C265.944 64.2532 272.648 79.3389 271.531 95.542C269.575 122.92 241.081 139.682 218.733 149.46C192.195 160.913 163.142 167.06 134.648 170.133C108.11 173.206 80.4539 172.367 54.4741 166.221C39.6685 162.59 25.1421 156.723 14.5268 145.828C2.79396 133.256 1.95591 115.656 6.70489 100.291C13.13 79.6182 29.3324 62.0182 45.8142 48.6087C62.0166 35.1992 82.6887 24.0246 103.919 21.7897C106.713 21.5103 106.713 17.3198 103.919 17.5992Z"
+                                    fill="#F9E73C" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0">
+                                    <rect width="276" height="176" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <svg id="star-1" width="35" height="40" viewBox="0 0 35 40" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0)">
+                                <path
+                                    d="M1.45823 24.7272C5.83323 23.2726 9.47907 20.3635 13.1249 18.909C13.8541 18.909 13.8541 18.1817 13.8541 18.1817C14.5832 12.3635 14.5832 6.54536 14.5832 1.45445C13.8541 1.45445 13.1249 1.45445 12.3957 2.18172C13.8541 5.81809 15.3124 14.5454 18.2291 16.7272C21.8749 18.909 29.1666 18.1817 33.5416 18.909C33.5416 18.1817 33.5416 16.7272 33.5416 15.9999C29.1666 16.7272 25.5207 19.6363 21.1457 21.0908C20.4166 21.0908 20.4166 21.8181 20.4166 22.5454C21.1457 28.3635 20.4166 33.4544 21.1457 39.2726C21.8749 39.2726 22.6041 38.5454 23.3332 38.5454C21.1457 34.1817 20.4166 27.6363 17.4999 23.9999C13.1249 20.3635 5.83323 23.2726 1.45823 23.2726C-9.90108e-05 22.5454 -0.729266 25.4544 1.45823 24.7272C5.10407 25.4544 13.1249 23.2726 16.0416 26.909C18.2291 29.8181 19.6874 35.6363 21.1457 39.2726C21.8749 40.7272 23.3332 39.9999 23.3332 38.5454C23.3332 35.6363 21.8749 27.6363 23.3332 24.7272C24.7916 21.0908 30.6249 19.6363 33.5416 18.909C34.9999 18.1817 34.9999 15.9999 33.5416 15.9999C29.8957 15.2726 22.6041 15.9999 20.4166 13.8181C17.4999 11.6363 16.0416 4.36354 14.5832 0.727177C13.8541 -0.727368 12.3957 -9.57176e-05 12.3957 1.45445C12.3957 5.81809 13.1249 14.5454 10.9374 17.4544C8.7499 19.6363 2.91657 21.8181 0.729068 23.2726C-9.90108e-05 23.9999 0.729068 25.4544 1.45823 24.7272Z"
+                                    fill="white" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0">
+                                    <rect width="35" height="40" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <svg id="star-2" width="35" height="40" viewBox="0 0 35 40" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0)">
+                                <path
+                                    d="M1.45823 24.7272C5.83323 23.2726 9.47907 20.3635 13.1249 18.909C13.8541 18.909 13.8541 18.1817 13.8541 18.1817C14.5832 12.3635 14.5832 6.54536 14.5832 1.45445C13.8541 1.45445 13.1249 1.45445 12.3957 2.18172C13.8541 5.81809 15.3124 14.5454 18.2291 16.7272C21.8749 18.909 29.1666 18.1817 33.5416 18.909C33.5416 18.1817 33.5416 16.7272 33.5416 15.9999C29.1666 16.7272 25.5207 19.6363 21.1457 21.0908C20.4166 21.0908 20.4166 21.8181 20.4166 22.5454C21.1457 28.3635 20.4166 33.4544 21.1457 39.2726C21.8749 39.2726 22.6041 38.5454 23.3332 38.5454C21.1457 34.1817 20.4166 27.6363 17.4999 23.9999C13.1249 20.3635 5.83323 23.2726 1.45823 23.2726C-9.90108e-05 22.5454 -0.729266 25.4544 1.45823 24.7272C5.10407 25.4544 13.1249 23.2726 16.0416 26.909C18.2291 29.8181 19.6874 35.6363 21.1457 39.2726C21.8749 40.7272 23.3332 39.9999 23.3332 38.5454C23.3332 35.6363 21.8749 27.6363 23.3332 24.7272C24.7916 21.0908 30.6249 19.6363 33.5416 18.909C34.9999 18.1817 34.9999 15.9999 33.5416 15.9999C29.8957 15.2726 22.6041 15.9999 20.4166 13.8181C17.4999 11.6363 16.0416 4.36354 14.5832 0.727177C13.8541 -0.727368 12.3957 -9.57176e-05 12.3957 1.45445C12.3957 5.81809 13.1249 14.5454 10.9374 17.4544C8.7499 19.6363 2.91657 21.8181 0.729068 23.2726C-9.90108e-05 23.9999 0.729068 25.4544 1.45823 24.7272Z"
+                                    fill="white" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0">
+                                    <rect width="35" height="40" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+
+
+                    </span> industry
+                    ?
+                </h1>
+                <span class="title__h1 title__h1--double">Did the Woodstock festival shake up the music industry
+                    ?</span>
+            </div>
+            <div class="title__description-wrapper">
+                <p class="title__description">
+                    On August 15, 1969, the mythical Woodstock festival took place where nearly half a million people
+                    attended over three
+                    days. Folk, rock and blues artists such as Santana and Jimi Hendrix performed there. This festival
+                    is considered one of
+                    the greatest moments in the history of popular music.
+                </p>
+            </div>
+        </div>
+        <div class="explanation">
+            <h2 class="explanation__title">Social Changes</h2>
+            <p class="explanation__desc">At the end of the 1960s, the hippie movement was at its peak. Pacifists and
+                intellectuals gathered in
+                huge
+                demonstrations in favor of peace. the protests are rising sharply and a part of the youth enters in
+                revolt.
+            </p>
+            <p class="explanation__desc">
+                We know that this period has greatly contributed to the release of some morals and this counter culture
+                embodies the
+                development of new social movements.
+            </p>
+        </div>
+        <div class="problematic">
+            <div class="title__container">
+                <h2 class="title__h1">
+                    HAS THIS <span class="color-green-light">POLITIcAL</span> <span
+                        class="color-pink-light">FREEDOM</span> BROUGHT A CULTURAL AND <span
+                        class="color-blue-light">MUSICAL</span> <span class="color-yellow">UPHEAVAL</span>?
+                </h2>
+                <span class="title__h1 title__h1--double">
+                    HAS THIS POLITIcAL FREEDOM BROUGHT A CULTURAL AND MUSICAL UPHEAVAL?
+                </span>
+            </div>
+        </div>
+        <div id="viz" style="display: flex;" data-scroll-section=""></div>
+    </main>
+    <div class="noise"></div>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.min.js"></script>
     <script src="main.js"></script>
 </body>
