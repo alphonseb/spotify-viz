@@ -318,6 +318,7 @@ body {
     position: relative;
     color: var(--black);
     padding: 50px;
+    padding-right: 100px;
     
     &::before {
         content: '';
@@ -346,8 +347,42 @@ body {
         font-size: 4rem;
         line-height: 4.8rem;
         margin: 0;
-        margin-bottom: 64px;
+        margin-bottom: 128px;
         font-weight: normal;
+    }
+    
+    
+    
+    
+    
+    &__sources, &__authors {
+        font-family: 'Avenir Light';
+        font-size: 2rem;
+        line-height: 3.2rem;
+        margin: 0;
+        font-weight: normal;
+        
+        
+        a {
+            font-family: 'Avenir Bold';
+            text-decoration: none;
+        }
+    }
+    
+    &__sources {
+        margin-bottom: 64px;
+        
+         a {
+                color: var(--blue-dark);
+                
+            }
+    }
+    
+    &__authors {
+        a {
+                color: var(--pink-dark);
+                
+            }
     }
 }
 
