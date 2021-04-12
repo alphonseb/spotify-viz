@@ -25,6 +25,7 @@ body {
 
 .horizontal {
     overflow-x: auto;
+    overflow-y: hidden;
     scrollbar-width: none;
     display: flex;
     min-width: 100vw;
