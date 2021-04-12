@@ -5,8 +5,8 @@ import avenirBoldUrl from 'url:../assets/Avenir/AvenirBold.ttf'
 import { intToRGB, hashCode } from '../utils/colors'
 
 const canvas = {
-    width: 600,
-    height: window.innerHeight
+    width: 660,
+    height: window.innerHeight - 20
 }
 
 
@@ -22,7 +22,7 @@ export const timelineSketch = (s) => {
     let avenirBold;
     let timer = 0
     let hoverTimer = 0
-    const woodstockX = 9 * canvas.width / 20
+    const woodstockX = (9 * (canvas.width / 20)) + 60
     let start = false
     
     
@@ -33,13 +33,13 @@ export const timelineSketch = (s) => {
     }
     
     s.setup = () => {
-        window.addEventListener('click', () => {
+        window.addEventListener('timeline', () => {
             start = true
         })
         
         const cnv = s.createCanvas(canvas.width, canvas.height);
         cnv.id('p5-timeline')
-        cnv.parent('viz')
+        cnv.parent('viz-timeline')
         let genre = ''
         let year;
         let count = 0
@@ -116,9 +116,9 @@ export const timelineSketch = (s) => {
             
             if (hovered) {
                 s.fill(`#${intToRGB(hashCode(hovered + 'nul'))}`)
-                s.circle(20, 20, 10)
+                s.circle(10, canvas.height / 2, 10)
                 s.fill('white')
-                s.text(hovered[0].toUpperCase() + hovered.substring(1), 30, 25)
+                s.text(hovered[0].toUpperCase() + hovered.substring(1), 20, canvas.height / 2 + 5)
             }
             
             
@@ -158,9 +158,9 @@ export const timelineSketch = (s) => {
                 }
                 if (timer > Math.abs(point.year - 1960)*2 && timer > Math.abs(index)*2) {
                     
-                    s.circle(((point.year - 1960) * (canvas.width - 100) / 20) + 45, canvas.height / 2 + index * 15, 6)
+                    s.circle(((point.year - 1960) * (canvas.width - 100) / 20) + 45 + 60, canvas.height / 2 + index * 15, 6)
                 }
-                if (s.dist(s.mouseX, s.mouseY, ((point.year - 1960) * (canvas.width - 100) / 20) + 45, canvas.height / 2 + index * 15) < 6) {
+                if (s.dist(s.mouseX, s.mouseY, ((point.year - 1960) * (canvas.width - 100) / 20) + 45 + 60, canvas.height / 2 + index * 15) < 6) {
                     if (point.genre !== hovered) {
                         hoverTimer = 0
                     }

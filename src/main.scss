@@ -16,9 +16,16 @@ html {
 
 body {
     margin: 0;
+    // overflow: auto;
+    
+    p {
+        margin-top: 0;
+    }
 }
 
 .horizontal {
+    overflow-x: auto;
+    scrollbar-width: none;
     display: flex;
     min-width: 100vw;
     height: 100vh;
@@ -91,7 +98,7 @@ body {
         background-color: var(--yellow);
         position: absolute;
         top: 0;
-        right: 100%;
+        right: 99%;
         clip-path: polygon(30% 0%, 100% 0, 100% 100%, 0% 100%);
         // transform: rotate(2deg);
     }
@@ -132,9 +139,251 @@ body {
         background-color: var(--black);
         position: absolute;
         top: 0;
-        right: 100%;
+        right: 99%;
         clip-path: polygon(30% 0%, 100% 0, 100% 100%, 0% 100%);
         // transform: rotate(2deg);
+    }
+}
+
+.dataviz {
+    background-color: var(--black);
+    flex: 0 0 260%;
+    color: var(--white);
+    font-size: 2rem;
+    line-height: 3.2rem;
+    font-family: 'Avenir Light';
+    display: flex;
+    position: relative;
+    
+    &__zigouigoui {
+        position: absolute;
+        top: 10%;
+        right: calc(100% );
+        transform: translateX(50%);
+    }
+    
+    &__intro {
+        padding: 120px;
+        padding-top: 250px;
+        position: relative;
+        margin-bottom: 64px;
+    }
+    
+    &__description {
+        width: 510px;
+    }
+    
+    &__legend {
+        width: 510px;
+        
+        p {
+            display: flex;
+            align-items: center;
+        }
+    }
+    
+    &__legend-desc {
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+        position: relative;
+        
+        &::after {
+            content: '';
+            width: 100%;
+            background-color: var(--white);
+            height: 1px;
+            opacity: 20%;
+            top: 100%;
+            left: 0;
+            position: absolute;
+        }
+    }
+    
+    &__legend-genres {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        align-items: start;
+        
+        p {
+            margin-bottom: 8px;
+        }
+    }
+    
+    &__viz {
+        display: flex;
+        align-items: center;
+    }
+    
+    &__graph {
+        display: flex;
+    }
+    
+    &__year {
+        color: var(--grey-200);
+        font-size: 35vh;
+        line-height: 30.4rem;
+        font-family: 'Avenir Bold';
+        margin: 0;
+        
+        &--left {
+            transform: rotate(-90deg);
+            margin-left: -200px;
+            margin-right: -150px;
+        }
+        &--right {
+            transform: rotate(90deg);
+            margin-left: -150px;
+            // margin-right: -100px;
+        }
+    }
+    
+    &__timeline {
+        background-color: var(--black);
+        display: flex;
+        align-items: center;
+    }
+    
+    &__overline {
+        font-family: 'Avenir Bold';
+        font-size: 2rem;
+        line-height: 2.4rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+    
+    &__graph-title {
+        font-family: 'Avenir Light';
+        font-size: 4rem;
+        line-height: 4.8rem;
+        margin: 0;
+        margin-bottom: 64px;
+        font-weight: normal;
+    }
+    
+    #viz-graph {
+        margin-left: -48px;
+    }
+    
+    
+    &__graph-legend {
+        p {
+            margin: 0;
+            margin-bottom: 8px;
+            line-height: 1;
+            
+            .graph-legend {
+                display: inline-block;
+                width: 69px;
+                height: 8px;
+                margin-right: 16px;
+                
+                &--acousticness {
+                    background-color: var(--pink-dark);
+                }
+                &--energy {
+                    background-color: var(--yellow);
+                }
+            }
+            
+            .graph-legend-text {
+                text-transform: uppercase;
+                font-family: 'Avenir Light';
+                font-size: 1.4rem;
+            }
+        }
+    }
+    
+    &__graph-viz {
+        margin-right: 130px;
+    }
+    
+    &__graph-descriptions {
+        padding: 100px;
+        display: grid;
+        grid-column-gap: 64px;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        
+        p {
+            width: 416px;
+        }
+    }
+}
+
+.theend {
+    flex: 0 0 50%;
+    background-color: var(--yellow);
+    position: relative;
+    color: var(--black);
+    padding: 50px;
+    
+    &::before {
+        content: '';
+        width: 100px;
+        height: 100vh;
+        background-color: var(--yellow);
+        position: absolute;
+        top: 0;
+        right: 99%;
+        clip-path: polygon(30% 0%, 100% 0, 100% 100%, 0% 100%);
+        // transform: rotate(2deg);
+    }
+    
+    &__overline {
+        font-family: 'Avenir Bold';
+        font-size: 2rem;
+        line-height: 2.4rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+    
+    &__title {
+        font-family: 'Avenir Light';
+        font-size: 4rem;
+        line-height: 4.8rem;
+        margin: 0;
+        margin-bottom: 64px;
+        font-weight: normal;
+    }
+}
+
+.circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    display: inline-block;
+    margin-right: 8px;
+    
+    &--rock {
+        background-color: #95B600;
+    }
+    &--jazz {
+        background-color: #CAF16E ;
+    }
+    &--pop {
+        background-color: #6F8B94 ;
+    }
+    &--country {
+        background-color: #5B242F ;
+    }
+    &--blues {
+        background-color: #C0658C ;
+    }
+    &--aa {
+        background-color: #A84679 ;
+        align-self: flex-start;
+        margin-top: 12px;
+        flex: 0 0 8px;   
+    }
+    &--bolero {
+        background-color: #CA0162 ;
+    }
+    &--folk {
+        background-color: #CA0162 ;
     }
 }
 
@@ -166,5 +415,15 @@ body {
         top: 160%;
         left: 50px;
         transform: scale(0.6);
+    }
+}
+
+.political-svg {
+    position: relative;
+    
+    svg {
+        position: absolute;
+        top: -50px;
+        left: -30px;
     }
 }

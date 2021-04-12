@@ -6,8 +6,8 @@ import avenirMediumUrl from 'url:../assets/Avenir/AvenirMedium.ttf'
 import { intToRGB, hashCode } from '../utils/colors'
 
 const canvas = {
-    width: 800,
-    height: 600
+    width: 600,
+    height: 1.8* window.innerHeight / 3
 }
 
 export const graphSketch = (s) => {
@@ -29,9 +29,9 @@ export const graphSketch = (s) => {
     s.setup = () => {
         const cnv = s.createCanvas(canvas.width, canvas.height);
         cnv.id('p5-graph')
-        cnv.parent('viz')
+        cnv.parent('viz-graph')
         
-        window.addEventListener('click', () => {
+        window.addEventListener('graph', () => {
             start = true
         })
         
@@ -186,7 +186,7 @@ export const graphSketch = (s) => {
                 const posX = ((meanAcoustic[index].year - 1960) * (canvas.width - canvas.width / 3) / 20) + canvas.width / 6
                 const posY = (canvas.height - 50) * (1 - meanAcoustic[index].acousticness)
                 
-                if (s.dist(s.mouseX, s.mouseY, posX, posY) < 15) {
+                if (s.dist(s.mouseX, s.mouseY, posX, posY) < 8) {
                     s.fill('#ED78AA')
                     s.noStroke()
                     s.circle(posX, posY, 10)
